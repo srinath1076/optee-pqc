@@ -1,0 +1,31 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.bin
+*.elf
+*.log
+*.cpio.gz
+*.uboot
+*.out
+*.d
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Liboqs build
+liboqs/include/
+liboqs/liboqs.a
+
+# Generated binaries
+host/pqc_host
+ta/pqc_ta.*
+
+# Temp
+*.swp
+*.tmp
+*.bak
