@@ -5,6 +5,26 @@
 
 ---
 
+# Clone QEMU-based OP-TEE
+
+mkdir -p $HOME/optee
+cd $HOME/optee
+
+# Core secure OS
+git clone https://github.com/OP-TEE/optee_os.git
+
+# Normal-world client libs & supplicant
+git clone https://github.com/OP-TEE/optee_client.git
+
+# (Optional) test suite
+git clone https://github.com/OP-TEE/optee_test.git
+
+# OP-TEE–enabled Linux kernel
+git clone https://github.com/OP-TEE/linux.git
+
+# ARM Trusted Firmware-A
+git clone https://github.com/ARM-software/arm-trusted-firmware.git trusted-firmware-a
+
 ## 🗂 Directory Layout
 
 | Path | Purpose |
