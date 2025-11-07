@@ -4,7 +4,7 @@ project(pqc_host)
 # Absolute paths
 set(HOST_DIR ${CMAKE_SOURCE_DIR})
 set(OPTEE_CLIENT_EXPORT $ENV{HOME}/optee/optee_client/out/export)
-set(TA_DEV_KIT_DIR $ENV{HOME}/optee/optee_os/out/arm/export-ta_arm64)
+set(TA_DEV_KIT_DIR $ENV{HOME}/optee/optee_os/out/export-ta_arm64)
 
 include_directories(
     ${HOST_DIR}

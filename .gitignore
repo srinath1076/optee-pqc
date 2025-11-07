@@ -24,6 +24,8 @@ liboqs/liboqs.a
 # Generated binaries
 host/pqc_host
 ta/pqc_ta.*
+bin/*
+build/*
 
 # Temp
 *.swp
