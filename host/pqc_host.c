@@ -6,18 +6,31 @@ int main(void) {
     TEEC_Context ctx;
     TEEC_Session sess;
     TEEC_Result res;
+    uint32_t origin;
     TEEC_UUID uuid = TA_PQC_UUID;
 
-    TEEC_InitializeContext(NULL, &ctx);
-    TEEC_OpenSession(&ctx, &sess, &uuid, TEEC_LOGIN_PUBLIC, NULL, NULL, &res);
+    res = TEEC_InitializeContext(NULL, &ctx);
     if (res != TEEC_SUCCESS) {
-        printf("Session open failed: 0x%x\n", res);
+        printf("InitializeContext failed: 0x%x\n", res);
+        return 1;
+    }
+
+    printf("[*] Opening session to PQC TA...\n");
+    res = TEEC_OpenSession(&ctx, &sess, &uuid,
+                           TEEC_LOGIN_PUBLIC,
+                           NULL, NULL, &origin);
+    if (res != TEEC_SUCCESS) {
+        printf("Session open failed: res=0x%x origin=0x%x\n", res, origin);
+        TEEC_FinalizeContext(&ctx);
         return 1;
     }
 
     printf("[+] Running PQC TA self-test...\n");
-    res = TEEC_InvokeCommand(&sess, CMD_TEST_ALL, NULL, NULL);
-    printf(res == TEEC_SUCCESS ? "[OK] PQC tests passed\n" : "[FAIL] PQC tests failed\n");
+    res = TEEC_InvokeCommand(&sess, CMD_TEST_ALL, NULL, &origin);
+    if (res == TEEC_SUCCESS)
+        printf("[OK] PQC tests passed\n");
+    else
+        printf("[FAIL] PQC tests failed: res=0x%x origin=0x%x\n", res, origin);
 
     TEEC_CloseSession(&sess);
     TEEC_FinalizeContext(&ctx);

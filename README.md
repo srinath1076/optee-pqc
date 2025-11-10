@@ -117,7 +117,7 @@ ls /mnt/host
 # → pqc_host, pqc_ta.ta, pqc_ta.elf
 
 mkdir -p /lib/optee_armtz
-cp /mnt/host/pqc_ta.ta /lib/optee_armtz/b6c53aba-9669-4668-a7f2-205629d00f86.ta
+cp /mnt/host/pqc_ta.ta /lib/optee_armtz/12345678-9abc-def0-1234-56789abcdef0.ta
 
 cp /mnt/host/libteec.so* /usr/lib/
 ldconfig
