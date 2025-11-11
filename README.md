@@ -70,21 +70,21 @@ out/export/usr/lib/libteec.so* and tee-supplicant
 cd $HOME/development/liboqs
 mkdir -p build-ta && cd build-ta
 
-cmake .. \
-  -DCMAKE_SYSTEM_NAME=Generic \
-  -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc \
-  -DCMAKE_C_FLAGS="-fPIC -D__TA__ -DNO_SYS -nostdlib -fvisibility=hidden" \
-  -DBUILD_SHARED_LIBS=OFF \
-  -DOQS_USE_OPENSSL=OFF \
-  -DOQS_USE_PTHREADS=OFF \
-  -DOQS_ENABLE_KEM_KYBER=ON \
-  -DOQS_ENABLE_SIG_DILITHIUM=ON \
-  -DOQS_PERMIT_UNSUPPORTED_ARCHITECTURE=ON
+cmake ..   -DCMAKE_SYSTEM_NAME=Generic   -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc   -DCMAKE_C_FLAGS="-fPIC -D__TA__ -DNO_SYS -nostdlib -fvisibility=hidden -Os"   -DBUILD_SHARED_LIBS=OFF   -DOQS_USE_OPENSSL=OFF  -DBUILD_TESTING=OFF   -DOQS_PERMIT_UNSUPPORTED_ARCHITECTURE=ON  -DOQS_ENABLE_KEM_ALG_ml_kem_768=ON   -DOQS_ENABLE_SIG_ALG_ml_dsa_65=ON -DOQS_MINIMAL_BUILD="KEM_ml_kem_768;SIG_ml_dsa_65" -DOQS_EMBEDDED_BUILD=ON -DOQS_USE_CPUFEATURE_INSTRUCTIONS=OFF   -DOQS_OPT_TARGET=generic 
 
 make -j$(nproc)
 
 Output:
 build-ta/lib/liboqs.a
+
+cd ~/development/liboqs/build-ta
+
+aarch64-linux-gnu-gcc -c \
+  -fPIC -D__TA__ -Os \
+  ../oqs_stubs.c \
+  -o oqs_stubs.o
+
+aarch64-linux-gnu-ar rcs liboqs.a ~/development/liboqs/oqs_stubs.o
 
 ## 🔐 Step 3 — Build OP-TEE PQC Example
 
