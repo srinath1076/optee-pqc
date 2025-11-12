@@ -25,8 +25,8 @@ int main(void) {
         return 1;
     }
 
-    printf("[+] Running PQC TA self-test...\n");
-    res = TEEC_InvokeCommand(&sess, CMD_TEST_ALL, NULL, &origin);
+    printf("[+] Running PQC TA TEST ML KEM...\n");
+    res = TEEC_InvokeCommand(&sess, CMD_TEST_ML_KEM, NULL, &origin);
     if (res == TEEC_SUCCESS)
         printf("[OK] PQC tests passed\n");
     else

@@ -22,10 +22,11 @@ liboqs/include/
 liboqs/liboqs.a
 
 # Generated binaries
-host/pqc_host
-ta/pqc_ta.*
 bin/*
 build/*
+bin/pqc_host
+build/host/pqc_host
+
 
 # Temp
 *.swp

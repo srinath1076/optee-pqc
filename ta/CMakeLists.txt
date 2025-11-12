@@ -23,7 +23,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--gc-sections")
 
 # --- UUID and sources ---
 set(UUID 12345678-9abc-def0-1234-56789abcdef0)
-set(TA_SRC pqc_ta.c)
+set(TA_SRC pqc_ta.c oqs_align.c)
 
 # --- TA artifact paths ---
 set(TA_ELF ${CMAKE_BINARY_DIR}/${UUID}.elf)
