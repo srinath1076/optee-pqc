@@ -130,10 +130,25 @@ tee-supplicant -d -f /var/lib/tee
 cd /mnt/host
 ./pqc_host
 
-Expected output:
+Expected output normal world:
 
-Initializing TEE context...
-Opening session to PQC TA...
-Keygen/Encap/Decap successful.
-Session closed successfully.
+[*] Opening session to PQC TA...
+[+] Running PQC TA all KEM/DSA/SPHINCS ...
+[OK] All PQC test passed
+
+Expected output secure world:
+
+I/TA: PQC TA: TA_CreateEntryPoint
+I/TA: PQC TA: installing custom OQS RNG backed by TEE_GenerateRandom
+I/TA: PQC TA: TA_OpenSessionEntryPoint
+I/TA: PQC TA: TA_InvokeCommandEntryPoint(cmd_id=255)
+I/TA: PQC TA: test_ml_kem() start
+I/TA: PQC TA: ML-KEM-768 SUCCESS
+I/TA: PQC TA: test_ml_dsa() start
+I/TA: PQC TA: ML-DSA-65 SUCCESS
+I/TA: PQC TA: test_sphincs() start
+I/TA: PQC TA: SPHINCS+ SUCCESS
+I/TA: PQC TA: TA_CloseSessionEntryPoint
+I/TA: PQC TA: TA_DestroyEntryPoint
+
 
