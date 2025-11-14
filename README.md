@@ -70,7 +70,8 @@ out/export/usr/lib/libteec.so* and tee-supplicant
 cd $HOME/development/liboqs
 mkdir -p build-ta && cd build-ta
 
-cmake ..   -DCMAKE_SYSTEM_NAME=Generic   -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc   -DCMAKE_C_FLAGS="-fPIC -D__TA__ -DNO_SYS -nostdlib -fvisibility=hidden -Os"   -DBUILD_SHARED_LIBS=OFF   -DOQS_USE_OPENSSL=OFF  -DBUILD_TESTING=OFF   -DOQS_PERMIT_UNSUPPORTED_ARCHITECTURE=ON  -DOQS_ENABLE_KEM_ALG_ml_kem_768=ON   -DOQS_ENABLE_SIG_ALG_ml_dsa_65=ON -DOQS_MINIMAL_BUILD="KEM_ml_kem_768;SIG_ml_dsa_65" -DOQS_EMBEDDED_BUILD=ON -DOQS_USE_CPUFEATURE_INSTRUCTIONS=OFF   -DOQS_OPT_TARGET=generic 
+cmake ..   -DCMAKE_SYSTEM_NAME=Generic   -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc   -DCMAKE_C_FLAGS="-fPIC -D__TA__ -DNO_SYS -nostdlib -fvisibility=hidden -Os"   -DBUILD_SHARED_LIBS=OFF   -DOQS_USE_OPENSSL=OFF  -DBUILD_TESTING=OFF   -DOQS_PERMIT_UNSUPPORTED_ARCHITECTURE=ON  -DOQS_ENABLE_KEM_ALG_ml_kem_768=ON   -DOQS_ENABLE_SIG_ALG_ml_dsa_65=ON   -DOQS_ENABLE_SIG_ALG_sphincs_sha2_128f_simple=ON   -DOQS_MINIMAL_BUILD="KEM_ml_kem_768;SIG_ml_dsa_65;SIG_sphincs_sha2_128f_simple" -DOQS_EMBEDDED_BUILD=ON -DOQS_USE_CPUFEATURE_INSTRUCTIONS=OFF   -DOQS_OPT_TARGET=generic 
+
 
 make -j$(nproc)
 
@@ -135,5 +136,4 @@ Initializing TEE context...
 Opening session to PQC TA...
 Keygen/Encap/Decap successful.
 Session closed successfully.
-
 

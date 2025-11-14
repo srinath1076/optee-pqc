@@ -25,10 +25,10 @@ int main(void) {
         return 1;
     }
 
-    printf("[+] Running PQC TA TEST ML KEM...\n");
-    res = TEEC_InvokeCommand(&sess, CMD_TEST_ML_KEM, NULL, &origin);
+    printf("[+] Running PQC TA all KEM/DSA/SPHINCS ...\n");
+    res = TEEC_InvokeCommand(&sess, CMD_TEST_ALL , NULL, &origin);
     if (res == TEEC_SUCCESS)
-        printf("[OK] PQC tests passed\n");
+        printf("[OK] All PQC test passed\n");
     else
         printf("[FAIL] PQC tests failed: res=0x%x origin=0x%x\n", res, origin);
 
